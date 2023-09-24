@@ -6,9 +6,10 @@ pub struct Leaf {
     description: String,
 }
 
-pub enum LeafType {
+pub enum LeafType<T> {
     String(StringType),
-    Number(NumberType),
+    Number(NumberType<T>),
+    List(ListType<T>),
 }
 
 pub struct StringType {
@@ -17,9 +18,14 @@ pub struct StringType {
     pub max_length: Option<usize>,
 }
 
-pub struct NumberType {
-    pub min: Option<usize>,
-    pub max: Option<usize>,
+pub struct NumberType<T> {
+    pub min: Option<T>,
+    pub max: Option<T>,
+}
+
+pub struct ListType<T> {
+    pub min: Option<T>,
+    pub max: Option<T>,
 }
 
 impl fmt::Debug for Leaf {
